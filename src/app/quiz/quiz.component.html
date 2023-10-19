@@ -1,0 +1,46 @@
+<div class="quiz-container" *ngIf="!showResult">
+  <h2 class="question">{{ questions[currentQuestion].question }}</h2>
+  <div
+    class="options"
+    *ngFor="let option of questions[currentQuestion].options; let i = index"
+  >
+    <label>
+      <input
+        type="radio"
+        name="answer"
+        [(ngModel)]="selectedOption"
+        [value]="i"
+      />
+      {{ option }}
+    </label>
+  </div>
+  <button
+    *ngIf="currentQuestion !== questions.length - 1"
+    (click)="nextQuestion()"
+  >
+    Next
+  </button>
+  <button
+    *ngIf="currentQuestion === questions.length - 1"
+    (click)="submitQuiz()"
+  >
+    Submit
+  </button>
+</div>
+
+<div class="quiz-container" *ngIf="showResult">
+  <h2>Quiz Results</h2>
+  <p>You scored {{ score }} out of {{ questions.length }}</p>
+  <p>Correct answers:</p>
+  <ul>
+    <li
+      *ngFor="let question of questions; let i = index"
+      [ngClass]="{
+        'correct-answer':
+          question.options[selectedAnswers[i]] === question.answer
+      }"
+    >
+      {{ question.question }} - {{ question.options[selectedAnswers[i]] }}
+    </li>
+  </ul>
+</div>
