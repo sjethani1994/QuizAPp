@@ -33,6 +33,15 @@ export class QuizComponent {
     }
   }
 
+  previousQuestion() {
+    if (this.currentQuestion < this.questions.length - 1) {
+      this.currentQuestion--;
+    } else {
+      this.showResult = true;
+      this.calculateScore();
+    }
+  }
+
   submitQuiz() {
     if (this.selectedOption !== undefined) {
       this.selectedAnswers.push(this.selectedOption);

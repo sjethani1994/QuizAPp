@@ -14,18 +14,26 @@
       {{ option }}
     </label>
   </div>
-  <button
+  <div class="button-div d-flex flex-row justify-content-start align-items-center">
+    <button
     *ngIf="currentQuestion !== questions.length - 1"
     (click)="nextQuestion()"
   >
     Next
   </button>
   <button
+  *ngIf="currentQuestion !== 0"
+  (click)="previousQuestion()"
+>
+  Previous
+</button>
+  <button
     *ngIf="currentQuestion === questions.length - 1"
     (click)="submitQuiz()"
   >
     Submit
   </button>
+  </div>
 </div>
 
 <div class="quiz-container" *ngIf="showResult">
